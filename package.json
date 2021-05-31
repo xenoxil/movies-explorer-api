@@ -1,5 +1,5 @@
 {
-  "name": "mestoserver",
+  "name": "movieServer",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,7 +10,7 @@
     "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "YuriyStepanov",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
