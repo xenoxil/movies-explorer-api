@@ -50,13 +50,12 @@ module.exports.login = (req, res, next) => {
             const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
               expiresIn: '7d',
             });
-            res
-              .cookie('movieExplorerToken', token, {
-                maxAge: 604800000,
-                httpOnly: true,
-                sameSite: 'none',
-                secure: true,
-              })
+            res.cookie('movieExplorerToken', token, {
+              maxAge: 604800000,
+              httpOnly: true,
+              sameSite: 'none',
+              secure: true,
+            })
               .send({ _id: req.body._id });
           }
         });
