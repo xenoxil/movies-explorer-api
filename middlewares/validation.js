@@ -1,6 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
-const { ObjectId } = require('mongoose').Types;
 
 const date = new Date();
 const currentYear = date.getFullYear();
@@ -75,13 +74,11 @@ module.exports.userValidation = celebrate({
 
 module.exports.movieIdValidation = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string()
-      .alphanum()
-      .custom((value, helpers) => {
-        if (ObjectId.isValid(value)) {
-          return value;
-        }
-        return helpers.message('Невалидный id');
+    movieId: Joi.number().required().integer().positive()
+      .messages({
+        'number.integer': 'Поле "movieId" должно быть целочисленным',
+        'number.required': 'Поле "movieId" должно быть заполнено',
+        'number.positive': 'Поле "movieId" должно быть положительным',
       }),
   }),
 });

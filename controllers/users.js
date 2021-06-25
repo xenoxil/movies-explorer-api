@@ -11,7 +11,7 @@ const NotUniqueEmailError = require('../errors/NotUniqueEmailError');
 
 // получаем информацию о текущем пользователе
 module.exports.getMyInfo = (req, res, next) => {
-  Users.find(req.user._id)
+  Users.findById(req.user._id)
     .orFail(() => {
       next(new ResourceUnavailableError('Запрашиваемый пользователь не найден'));
     })

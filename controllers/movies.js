@@ -6,7 +6,7 @@ const PermissionError = require('../errors/PermissionError');
 
 //  получаем список всех фильмов сохранённых пользователем
 module.exports.getMyMovies = (req, res, next) => {
-  Movies.find(req.user._id)
+  Movies.findById({ owner: req.user._id })
     .then((user) => {
       res.send({ data: user });
     })
