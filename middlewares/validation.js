@@ -30,9 +30,10 @@ module.exports.loginValidation = celebrate({
 // валидация данных при регистрации
 module.exports.signupValidation = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).messages({
-      'string.required': 'Поле "name" должно быть заполнено',
-    }),
+    name: Joi.string().required().min(2).max(30)
+      .messages({
+        'string.required': 'Поле "name" должно быть заполнено',
+      }),
     email: Joi.string()
       .required()
       .custom((value, helpers) => {

@@ -8,10 +8,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { loginValidation, signupValidation } = require('./middlewares/validation');
 const { errorHandler } = require('./middlewares/errorHandler');
-const { createUser, login, logout } = require('./controllers/users');
-const ResourceUnavalableError = require('./errors/ResourceUnavailableError');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -43,13 +40,8 @@ app.use(cookies());
 
 app.use(express.json());
 app.use(requestLogger);
-app.post('/signin', loginValidation, login);
-app.post('/signup', signupValidation, createUser);
-app.post('/signout', logout);
+
 app.use('/', router);
-app.use('*', (req, res, next) => {
-  next(new ResourceUnavalableError('Запрашиваемый ресурс не найден'));
-});
 
 mongoose.connect('mongodb://localhost:27017/movieExplorerdb', {
   useNewUrlParser: true,
