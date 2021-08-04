@@ -15,17 +15,19 @@ module.exports.getMyMovies = (req, res, next) => {
 
 // сохраняем фильм пользователя
 module.exports.saveMovie = (req, res, next) => {
-  const { country,
+  const {
+    country,
     director,
     duration,
     year,
     description,
     image,
     trailer,
-    nameRu,
-    nameEn,
+    nameRU,
+    nameEN,
     thumbnail,
-    movieId } = req.body;
+    movieId,
+  } = req.body;
   Users.findById(req.user._id)
     .then((user) => {
       Movies.create({
@@ -36,8 +38,8 @@ module.exports.saveMovie = (req, res, next) => {
         description,
         image,
         trailer,
-        nameRu,
-        nameEn,
+        nameRU,
+        nameEN,
         thumbnail,
         movieId,
         owner: user,

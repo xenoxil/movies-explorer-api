@@ -10,7 +10,7 @@ const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorHandler } = require('./middlewares/errorHandler');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, mongoDbPath, NODE_ENV } = process.env;
 const app = express();
 
 const limiter = rateLimit({
@@ -34,16 +34,16 @@ app.use(
   }),
 );
 
+app.use(requestLogger);
 app.use(limiter);
 app.use(helmet());
 app.use(cookies());
 
 app.use(express.json());
-app.use(requestLogger);
 
 app.use('/', router);
 
-mongoose.connect('mongodb://localhost:27017/movieExplorerdb', {
+mongoose.connect(NODE_ENV === 'production' ? mongoDbPath : 'mongodb://localhost:27017/movieExplorerdb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,

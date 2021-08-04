@@ -126,6 +126,12 @@ module.exports.movieValidation = celebrate({
       .messages({
         'string.required': 'Поле "Постер" должно быть заполнено',
       }),
+    movieId: Joi.number().required().integer().positive()
+      .messages({
+        'number.integer': 'Поле "movieId" должно быть целочисленным',
+        'number.required': 'Поле "movieId" должно быть заполнено',
+        'number.positive': 'Поле "movieId" должно быть положительным',
+      }),
     trailer: Joi.string()
       .required()
       .custom((value, helpers) => {

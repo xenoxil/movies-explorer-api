@@ -31,7 +31,13 @@ module.exports.updateUser = (req, res, next) => {
     .then((user) => {
       res.send({ data: user });
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.codeName === 'DuplicateKey') {
+        next(new NotUniqueEmailError('Такой email уже зарегистрирован'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 // логин пользователя

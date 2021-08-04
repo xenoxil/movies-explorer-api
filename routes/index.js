@@ -11,6 +11,7 @@ router.post('/signup', signupValidation, createUser);
 router.post('/signout', auth, logout);
 router.use('/users', auth, userRoute);
 router.use('/movies', auth, movieRoute);
+router.use('/', auth);
 router.use('*', (req, res, next) => {
   next(new ResourceUnavalableError('Запрашиваемый ресурс не найден'));
 });
