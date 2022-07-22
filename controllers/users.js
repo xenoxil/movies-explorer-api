@@ -16,6 +16,7 @@ module.exports.getMyInfo = (req, res, next) => {
       next(new ResourceUnavailableError('Запрашиваемый пользователь не найден'));
     })
     .then((user) => {
+      console.log({ data: user })
       res.send({ data: user });
     })
     .catch(next);
