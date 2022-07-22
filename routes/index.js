@@ -8,7 +8,7 @@ const ResourceUnavalableError = require('../errors/ResourceUnavailableError');
 
 router.post('/signin', loginValidation, login);
 router.post('/signup', signupValidation, createUser);
-router.post('/signout', auth, logout);
+router.delete('/signout', auth, logout);
 router.use('/users', auth, userRoute);
 router.use('/movies', auth, movieRoute);
 router.use('/', auth);
