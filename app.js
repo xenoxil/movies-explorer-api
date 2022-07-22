@@ -28,8 +28,8 @@ app.options('*', (req, res) => {
 
 app.use(
   cors({
-    // origin: 'http://localhost:3000',
-    origin: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
+    origin: 'http://localhost:3000',
+    // origin: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     credentials: true,
   }),
 );
