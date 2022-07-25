@@ -88,11 +88,10 @@ module.exports.movieIdValidation = celebrate({
 
 module.exports.movieValidation = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(2).max(30)
+    country: Joi.string().required().min(2)
       .messages({
         'string.min': 'Поле "Страна" должно быть длиннее 2 символов',
         'string.required': 'Поле "Страна" обязательно',
-        'string.max': 'Поле "Страна" должно быть не длиннее 30 символов',
       }),
     director: Joi.string().required().min(2).max(100)
       .messages({
