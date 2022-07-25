@@ -92,7 +92,7 @@ module.exports.movieValidation = celebrate({
         'string.required': 'Поле "Страна" обязательно',
         'string.max': 'Поле "Страна" должно быть не длиннее 30 символов',
       }),
-    director: Joi.string().required().min(2).max(30)
+    director: Joi.string().required().min(2).max(100)
       .messages({
         'string.min': 'Поле "Директор" должно быть длиннее 2 символов',
         'string.required': 'Поле "Директор" обязательно',
