@@ -163,7 +163,7 @@ module.exports.movieValidation = celebrate({
         'string.required': 'Поле "Русское название" обязательно',
         'string.max': 'Поле "Русское название" должно быть не длиннее 100 символов',
       }),
-    nameEN: Joi.string().pattern(englishLanguage).required().min(2)
+    nameEN: Joi.string().required().min(2)
       .max(100)
       .messages({
         'string.min': 'Поле "Английское название" должно быть длиннее 2 символов',
