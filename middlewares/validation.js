@@ -111,7 +111,7 @@ module.exports.movieValidation = celebrate({
         'number.required': 'Поле "Год" обязательно',
         'number.max': `Поле "Год" не должно быть больше ${currentYear}`,
       }),
-    description: Joi.string().required().min(2).max(250)
+    description: Joi.string().required().min(2).max(4000)
       .messages({
         'string.required': 'Поле "Длительность" обязательно',
       }),
