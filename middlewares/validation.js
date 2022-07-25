@@ -3,7 +3,9 @@ const validator = require('validator');
 
 const date = new Date();
 const currentYear = date.getFullYear();
-const russianLanguage = /^[А-Яа-я0-9]+$/;
+
+/* const russianLanguage = /^[А-Яа-я0-9]+$/; */
+
 const englishLanguage = /^[\w]+$/;
 
 // валидация данных при логине
@@ -154,13 +156,12 @@ module.exports.movieValidation = celebrate({
       .messages({
         'string.required': 'Поле "Миниатюрное изображение постера" должно быть заполнено',
       }),
-    nameRU: Joi.string().pattern(russianLanguage).required().min(2)
+    nameRU: Joi.string().required().min(2)
       .max(100)
       .messages({
         'string.min': 'Поле "Русское название" должно быть длиннее 2 символов',
         'string.required': 'Поле "Русское название" обязательно',
         'string.max': 'Поле "Русское название" должно быть не длиннее 100 символов',
-        'string.pattern': 'Поле "Русское название" должно состоять только из русских букв и цифр',
       }),
     nameEN: Joi.string().pattern(englishLanguage).required().min(2)
       .max(100)
