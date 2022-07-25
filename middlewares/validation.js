@@ -4,9 +4,9 @@ const validator = require('validator');
 const date = new Date();
 const currentYear = date.getFullYear();
 
-/* const russianLanguage = /^[А-Яа-я0-9]+$/; */
+/* const russianLanguage = /^[А-Яа-я0-9]+$/;
 
-const englishLanguage = /^[\w:]+$/;
+const englishLanguage = /^[\w:]+$/; */
 
 // валидация данных при логине
 module.exports.loginValidation = celebrate({
