@@ -18,8 +18,8 @@ const limiter = rateLimit({
   max: 150, // limit each IP to 150 requests per windowMs
 });
 app.options('*', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-  // res.set('Access-Control-Allow-Origin', 'https://xenoxil.movie-explorer.nomoreparties.sbs');
+  // res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.set('Access-Control-Allow-Origin', 'https://xenoxil.movie-explorer.nomoreparties.sbs');
   res.set('Access-Control-Allow-Headers', 'Content-Type');
   res.set('Access-Control-Allow-Methods', ['PUT', 'GET', 'POST', 'DELETE', 'PATCH']);
   res.set('Access-Control-Allow-Credentials', 'true');
@@ -28,8 +28,8 @@ app.options('*', (req, res) => {
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
-    // origin: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
+    // origin: 'http://localhost:3000',
+    origin: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     credentials: true,
   }),
 );
