@@ -38,7 +38,7 @@ const corsOptions = {
   origin: ['https://xenoxil.movie-explorer.nomoreparties.sbs'], // здесь список допустимых адресов запроса
   credentials: true,
 };
-cors(corsOptions);
+app.use(cors(corsOptions));
 
 app.use(requestLogger);
 app.use(limiter);
