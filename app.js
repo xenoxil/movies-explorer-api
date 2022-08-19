@@ -24,7 +24,7 @@ const limiter = rateLimit({
   res.set('Access-Control-Allow-Methods', ['PUT', 'GET', 'POST', 'DELETE', 'PATCH']);
   res.set('Access-Control-Allow-Credentials', 'true');
   res.send('ok');
-}); */
+});
 
 app.use(
   cors({
@@ -32,7 +32,13 @@ app.use(
     origin: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     credentials: true,
   }),
-);
+); */
+
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://xenoxil.movie-explorer.nomoreparties.sbs'], // здесь список допустимых адресов запроса
+  credentials: true,
+};
+cors(corsOptions);
 
 app.use(requestLogger);
 app.use(limiter);
