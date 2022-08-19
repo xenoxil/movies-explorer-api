@@ -46,16 +46,10 @@ module.exports.saveMovie = (req, res, next) => {
       })
         .then((movie) => {
           res.send(movie);
-        })
-        .catch((err) => {
-          if (err._message === 'movie validation failed') {
-            next(new BadRequestError('Данные фильма не валидны'));
-          } else {
-            next(err);
-          }
         });
     })
     .catch((err) => {
+      console.log(err);
       if (err._message === 'movie validation failed') {
         next(new BadRequestError('Данные фильма не валидны'));
       } else {
