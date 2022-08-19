@@ -35,7 +35,7 @@ app.use(
 ); */
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://xenoxil.movie-explorer.nomoreparties.sbs'], // здесь список допустимых адресов запроса
+  origin: ['https://xenoxil.movie-explorer.nomoreparties.sbs'], // здесь список допустимых адресов запроса
   credentials: true,
 };
 cors(corsOptions);
