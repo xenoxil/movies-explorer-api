@@ -10,14 +10,14 @@ const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorHandler } = require('./middlewares/errorHandler');
 
-const { PORT = 3000, mongoDbPath, NODE_ENV } = process.env;
+const { PORT = 3001, mongoDbPath, NODE_ENV } = process.env;
 const app = express();
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 150, // limit each IP to 150 requests per windowMs
 });
-/* app.options('*', (req, res) => {
+app.options('*', (req, res) => {
   // res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.set('Access-Control-Allow-Origin', 'https://xenoxil.movie-explorer.nomoreparties.sbs');
   res.set('Access-Control-Allow-Headers', 'Content-Type');
@@ -32,13 +32,7 @@ app.use(
     origin: 'https://xenoxil.movie-explorer.nomoreparties.sbs',
     credentials: true,
   }),
-); */
-
-const corsOptions = {
-  origin: ['https://xenoxil.movie-explorer.nomoreparties.sbs'], // здесь список допустимых адресов запроса
-  credentials: true,
-};
-app.use(cors(corsOptions));
+);
 
 app.use(requestLogger);
 app.use(limiter);
