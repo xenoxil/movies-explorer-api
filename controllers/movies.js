@@ -45,7 +45,6 @@ module.exports.saveMovie = (req, res, next) => {
         owner: user,
       })
         .then((movie) => {
-          res.send('мы тут');
           res.send(movie);
         });
     })
@@ -60,12 +59,12 @@ module.exports.saveMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movies.findById(req.params.movieId)
+  Movies.find(req.params.movieId)
     .orFail(() => {
       next(new ResourceUnavailableError('Фильм не найден'));
     })
-    .then((movie) => {
-      if (movie.owner.equals(req.user._id)) {
+    .then((movies) => {
+      if (movies.some((movie) => movie.owner.equals(req.user._id))) {
         Movies.findByIdAndRemove(req.params.movieId)
           .then((deletedMovie) => res.send({ data: deletedMovie }));
       } else {
