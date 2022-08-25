@@ -45,6 +45,7 @@ module.exports.saveMovie = (req, res, next) => {
         owner: user,
       })
         .then((movie) => {
+          res.send('мы тут');
           res.send(movie);
         });
     })
