@@ -2,7 +2,6 @@ const Movies = require('../models/movie');
 const Users = require('../models/user');
 const ResourceUnavailableError = require('../errors/ResourceUnavailableError');
 const BadRequestError = require('../errors/BadRequestError');
-const PermissionError = require('../errors/PermissionError');
 
 //  получаем список всех фильмов сохранённых пользователем
 module.exports.getMyMovies = (req, res, next) => {
@@ -59,18 +58,11 @@ module.exports.saveMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movies.find(req.params.movieId)
+  Movies.findByIdAndRemove(req.params.movieId)
     .orFail(() => {
       next(new ResourceUnavailableError('Фильм не найден'));
     })
-    .then((movies) => {
-      if (movies.some((movie) => movie.owner.equals(req.user._id))) {
-        Movies.findByIdAndRemove(req.params.movieId)
-          .then((deletedMovie) => res.send({ data: deletedMovie }));
-      } else {
-        next(new PermissionError('Нельзя удалить чужой фильм'));
-      }
-    })
+    .then((deletedMovie) => res.send({ data: deletedMovie }))
     .catch((err) => {
       if (err.kind === 'ObjectId') {
         next(new BadRequestError('Не корректный id фильма'));

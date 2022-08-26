@@ -5,5 +5,4 @@ const { movieIdValidation, movieValidation } = require('../middlewares/validatio
 router.get('/', getMyMovies);
 router.post('/', movieValidation, saveMovie);
 router.delete('/:movieId', movieIdValidation, deleteMovie);
-
 module.exports = router;
